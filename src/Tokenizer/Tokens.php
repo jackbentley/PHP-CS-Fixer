@@ -446,14 +446,16 @@ class Tokens extends \SplFixedArray
 
                     return \strlen($whitespace) > 2 // @TODO: can be removed on PHP 8; https://php.net/manual/en/function.substr.php
                         ? substr($whitespace, 2)
-                        : '';
+                        : ''
+                    ;
                 }
 
                 $tokens[$index] = new Token([T_OPEN_TAG, rtrim($token->getContent()).$whitespace[0]]);
 
                 return \strlen($whitespace) > 1 // @TODO: can be removed on PHP 8; https://php.net/manual/en/function.substr.php
                     ? substr($whitespace, 1)
-                    : '';
+                    : ''
+                ;
             }
 
             return $whitespace;
@@ -1162,17 +1164,19 @@ class Tokens extends \SplFixedArray
         }
 
         return 0 === $this->countTokenKind(T_INLINE_HTML)
-            || (1 === $this->countTokenKind(T_INLINE_HTML) && Preg::match('/^#!.+$/', $this[0]->getContent()));
+            || (1 === $this->countTokenKind(T_INLINE_HTML) && Preg::match('/^#!.+$/', $this[0]->getContent()))
+        ;
     }
 
     /**
-     * @param int $start start index
-     * @param int $end   end index
+     * @param int       $start  start index
+     * @param int       $end    end index
+     * @param list<int> $tokens
      */
     public function isPartialCodeMultiline(int $start, int $end, array $tokens = []): bool
     {
         for ($i = $start; $i <= $end; ++$i) {
-            if (!empty($tokens) && !$this[$i]->isGivenKind($tokens)) {
+            if ([] !== $tokens && !$this[$i]->isGivenKind($tokens)) {
                 continue;
             }
 
@@ -1432,7 +1436,8 @@ class Tokens extends \SplFixedArray
         // inlined extractTokenKind() call on the hot path
         $tokenKind = $token instanceof Token
             ? ($token->isArray() ? $token->getId() : $token->getContent())
-            : (\is_array($token) ? $token[0] : $token);
+            : (\is_array($token) ? $token[0] : $token)
+        ;
 
         $this->foundTokenKinds[$tokenKind] ??= 0;
         ++$this->foundTokenKinds[$tokenKind];
@@ -1448,7 +1453,8 @@ class Tokens extends \SplFixedArray
         // inlined extractTokenKind() call on the hot path
         $tokenKind = $token instanceof Token
             ? ($token->isArray() ? $token->getId() : $token->getContent())
-            : (\is_array($token) ? $token[0] : $token);
+            : (\is_array($token) ? $token[0] : $token)
+        ;
 
         if (1 === $this->foundTokenKinds[$tokenKind]) {
             unset($this->foundTokenKinds[$tokenKind]);
@@ -1466,7 +1472,8 @@ class Tokens extends \SplFixedArray
     {
         return $token instanceof Token
             ? ($token->isArray() ? $token->getId() : $token->getContent())
-            : (\is_array($token) ? $token[0] : $token);
+            : (\is_array($token) ? $token[0] : $token)
+        ;
     }
 
     /**

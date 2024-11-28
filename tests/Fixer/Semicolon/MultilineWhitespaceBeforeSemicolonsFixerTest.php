@@ -1309,7 +1309,7 @@ switch ($foo) {
                 $foo->foo($bar->something()
                     ->else()
                 );
-            '
+            ',
         ];
 
         yield [
@@ -1319,7 +1319,7 @@ switch ($foo) {
                         ->something()
                         ->else()
                 );
-            '
+            ',
         ];
 
         yield [
@@ -1327,7 +1327,7 @@ switch ($foo) {
                 echo "this is a
                     split line
                     string";
-            '
+            ',
         ];
 
         yield [
@@ -1335,7 +1335,7 @@ switch ($foo) {
                 return "this is a
                     split line
                     string";
-            '
+            ',
         ];
 
         yield [
@@ -1343,7 +1343,7 @@ switch ($foo) {
                 return "this is a" . $nice . "
                     split line
                     string";
-            '
+            ',
         ];
 
         yield [
@@ -1359,7 +1359,7 @@ switch ($foo) {
                     $nice . "
                     split line
                     string";
-            '
+            ',
         ];
 
         yield [
@@ -1409,7 +1409,7 @@ switch ($foo) {
                 return $this->isFoo() ||
                     $this->isBar()
                 ;
-            '
+            ',
         ];
 
         yield [
@@ -1418,7 +1418,7 @@ switch ($foo) {
                     doThing()->
                     doAnother()
                 ;
-            '
+            ',
         ];
 
         yield [
@@ -1427,7 +1427,7 @@ switch ($foo) {
                     doThing()::
                     doAnother()
                 ;
-            '
+            ',
         ];
 
         yield [
