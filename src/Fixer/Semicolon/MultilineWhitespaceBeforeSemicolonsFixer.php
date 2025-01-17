@@ -267,7 +267,7 @@ $object->method1()
                 break;
             }
 
-            $isMultilineCall |= $tokens->isPartialCodeMultiline($prevIndex, $index, [T_WHITESPACE]);
+            $isMultilineCall = $isMultilineCall || $tokens->isPartialCodeMultiline($prevIndex, $index, [T_WHITESPACE]);
 
             $index = $prevIndex;
         }
